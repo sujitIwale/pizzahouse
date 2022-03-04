@@ -1,0 +1,79 @@
+.form_container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form_details {
+    flex: 1;
+    border-bottom:0.7px solid rgb(182, 181, 181);
+}
+.form_details > * {
+    margin: 10px 0;
+}
+.pizza_size_radio_group {
+    display: flex;
+    flex-direction: row;
+}
+
+.pizza_size_radio_group > * {
+    margin: 3px;
+}
+
+.radio_btn {
+     display: flex;
+     margin: 3px 5px;
+     align-items: center;
+}
+
+.form_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: rgb(41, 41, 41);
+    padding: 5px 8px 0px 10px;
+}
+
+.control {
+    /* height: 75px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.control > * {
+    margin: 3px;
+}
+
+.control i {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    color: rgb(58, 58, 58);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1px; */
+}
+
+.control i:hover {
+    background-color:#bdbdbd;
+}
+
+.add_cart {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    background-color: rgb(125, 126, 231);
+    border-radius:6px;
+    padding: 3px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add_cart > * {
+    margin: 0 2px;
+}

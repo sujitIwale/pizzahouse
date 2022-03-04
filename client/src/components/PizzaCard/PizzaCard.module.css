@@ -21,7 +21,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 100;
+    /* z-index: 100; */
     color: white;
     padding: 2px 6px; 
     border-top-right-radius: inherit;
@@ -69,24 +69,8 @@
     justify-content: center;
 }
 
-.control > * {
-    margin: 3px;
-}
-
-.control i {
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-    color: rgb(58, 58, 58);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding: 1px; */
-}
-
-.control i:hover {
-    background-color:#bdbdbd;
+.control h3 {
+    margin: 0px 4px;
 }
 
 .card_footer {

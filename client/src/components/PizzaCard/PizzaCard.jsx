@@ -1,8 +1,12 @@
 import React from 'react';
+import { setSelectedProduct } from '../../redux/products/productsActions';
 import styles from './PizzaCard.module.css';
 
-const PizzaCard = ({ product }) => {
-	const addItemHandler = () => {};
+const PizzaCard = ({ product, openModal, dispatch }) => {
+	const addItemHandler = () => {
+		dispatch(setSelectedProduct(product));
+		openModal();
+	};
 	const type = product.isVeg ? 'Veg' : 'Non-Veg';
 	console.log(type);
 	return (
@@ -44,9 +48,7 @@ const PizzaCard = ({ product }) => {
 				<div
 					className={`${styles.control} btn-secondary btn-red pointer`}
 					onClick={addItemHandler}>
-					<i class='fa-solid fa-minus'></i>
 					<h3>Add</h3>
-					<i class='fa-solid fa-plus'></i>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '../Button/Button';
 import './Modal.css';
 
 const ModalOverlay = ({ closeModal, children, modalTitle }) => {
@@ -18,22 +17,13 @@ const ModalOverlay = ({ closeModal, children, modalTitle }) => {
 				<div className='titleCloseBtn'>
 					<button
 						onClick={() => {
-							closeModal(false);
+							closeModal();
 						}}>
 						<i className='fas fa-times white'></i>
 					</button>
 					<div className='modal-title'>{modalTitle}</div>
 				</div>
 				{children}
-				<div className='footer'>
-					<Button
-						textValue='Close'
-						onClick={() => {
-							closeModal(false);
-						}}
-						bgColor='rgb(224, 21, 62)'
-					/>
-				</div>
 			</div>
 		</div>
 	);
