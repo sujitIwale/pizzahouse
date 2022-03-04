@@ -13,7 +13,14 @@ html,body {
 }
 
 .app {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+}
+
+.top-bar-container {
+    width: 88%;
+    margin: 0 auto;
 }
 
 .main-container {
@@ -35,6 +42,9 @@ html,body {
 .cart-section {
     width: 27%;
     float: right;
+}
+.selected {
+    border-bottom: 3px solid rgb(15, 136, 235);
 }
 .Veg {
     background-color: rgb(0, 87, 0);

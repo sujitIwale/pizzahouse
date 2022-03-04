@@ -3,6 +3,7 @@ import './App.css';
 import Cart from './components/Cart/Cart';
 import Header from './components/Header/Header';
 import ProductList from './components/ProductList/ProductList';
+import TopBar from './components/TopBar/TopBar';
 
 const App = () => {
 	return (

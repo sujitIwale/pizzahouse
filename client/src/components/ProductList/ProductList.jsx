@@ -6,6 +6,7 @@ import PizzaCard from '../PizzaCard/PizzaCard';
 import Modal from '../Modal/Modal';
 import styles from './ProductList.module.css';
 import AddForm from '../AddForm/AddForm';
+import TopBar from '../TopBar/TopBar';
 
 const ProductList = () => {
 	const [ModalOpen, setModalOpen] = useState(false);
@@ -24,6 +25,7 @@ const ProductList = () => {
 	}, []);
 	return (
 		<div className={`${styles.product_list_container} product-section`}>
+			<TopBar />
 			{ModalOpen && (
 				<Modal
 					closeModal={() => setModalOpen(false)}

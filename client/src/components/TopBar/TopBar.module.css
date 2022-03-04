@@ -1,0 +1,8 @@
+.top_bar {
+    /* padding: 3px; */
+    /* border-bottom: 0.7px solid rgb(182, 181, 181); */
+}
+
+.filter_options > *{
+    margin: 3px 8px;
+}
