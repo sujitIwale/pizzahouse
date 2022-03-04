@@ -1,0 +1,25 @@
+.header_container {
+    width: 100%;
+     position: sticky;
+    top:0;
+    left:0;
+    z-index: 1000;
+    background-color: white;
+    padding: 2px;
+}
+
+.scrolling {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.header_logo_container {
+    display: flex;
+    align-items: center;
+}
+
+.logo_img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin: 0 8px;
+}

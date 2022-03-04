@@ -1,0 +1,24 @@
+.cart_container {
+    margin: 10px;
+}
+
+.cart {
+    background-color: rgb(243, 242, 242);
+    padding: 8px 12px;
+     box-shadow: 0 2px 7px #c2c2c2;
+}
+
+.cart > * {
+    margin: 5px 2px;
+}
+
+.cart_items_list {
+    border-top: 0.7px solid rgb(230, 229, 229);
+    list-style: none;
+}
+
+.cart_items_list li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

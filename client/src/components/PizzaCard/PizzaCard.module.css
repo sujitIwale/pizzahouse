@@ -1,0 +1,99 @@
+.pizza_card_container {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 7px #c2c2c2;
+    /* height: 320px; */
+    width: 300px;
+    position: relative;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.card_item_img {
+    height: 150px;
+    width: 300px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.category_tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    color: white;
+    padding: 2px 6px; 
+    border-top-right-radius: inherit;
+}
+
+.card_details {
+    padding: 4px 6px;
+    flex: 1;
+}
+
+.rating {
+    padding: 2px 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+.product_details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.rating_star {
+    color: rgb(255, 255, 255);
+    font-size: smaller;
+    margin-left: 2px;
+}
+
+.product_title {
+    color: rgb(19, 19, 19);
+}
+
+.product_desc {
+    color: grey;
+}
+
+.control {
+    /* height: 75px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.control > * {
+    margin: 3px;
+}
+
+.control i {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    color: rgb(58, 58, 58);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1px; */
+}
+
+.control i:hover {
+    background-color:#bdbdbd;
+}
+
+.card_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: rgb(41, 41, 41);
+    padding: 5px 8px 5px 10px;
+}
