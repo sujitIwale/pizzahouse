@@ -5,4 +5,6 @@
     flex-flow: row wrap;
     flex-wrap: wrap;
     gap: 20px;
+    height: 100%;
+    overflow-y: auto;
 }

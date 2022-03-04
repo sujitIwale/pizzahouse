@@ -72,6 +72,8 @@
     padding: 3px;
     align-items: center;
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 .add_cart > * {

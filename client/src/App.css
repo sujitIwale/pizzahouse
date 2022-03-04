@@ -30,10 +30,10 @@ html,body {
     /* height: 100%; */
     overflow-y: hidden;
     padding: 10px 0;
-    width: 75%;
+    width: 73%;
 }
 .cart-section {
-    width: 25%;
+    width: 27%;
     float: right;
 }
 .Veg {
@@ -67,3 +67,12 @@ html,body {
     background-color: rgb(255, 241, 241);
 }
 
+.flex {
+    display: flex;
+}
+.row {
+    flex-direction: row;
+}
+.spc-btw {
+    justify-content: space-between;
+}

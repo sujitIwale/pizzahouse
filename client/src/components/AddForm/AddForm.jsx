@@ -1,32 +1,79 @@
 import React, { useState } from 'react';
+import { addPrducts } from '../../redux/cart/cartActions';
 import styles from './AddForm.module.css';
 
-const AddForm = ({ product }) => {
+const AddForm = ({ product, dispatch, closeModal }) => {
 	const [Item, setItem] = useState({
 		pizza: product,
 		quantity: 1,
-		price: product.prise,
+		price: product.price,
+		toppings: [],
+		size: 'Regular',
+		total: product.price,
 	});
-	const changeHandler = (type) => {};
+	const inputChangeHandler = (e) => {
+		if (e.target.name === 'toppings' && e.target.type === 'checkbox') {
+			const found = Item.toppings.includes(e.target.value);
+			if (e.target.checked && !found) {
+				Item.toppings.push(e.target.value);
+				setItem({ ...Item });
+			} else {
+				setItem({
+					...Item,
+					[e.target.name]: Item.toppings.filter(
+						(item) => item !== e.target.value
+					),
+				});
+			}
+		} else setItem({ ...Item, [e.target.name]: e.target.value });
+	};
+	const changeHandler = (type) => {
+		if (type === 'increase') {
+			setItem({
+				...Item,
+				quantity: Item.quantity + 1,
+				total: Item.price * (Item.quantity + 1),
+			});
+		} else if (type === 'decrease' && Item.quantity > 0) {
+			setItem({
+				...Item,
+				quantity: Item.quantity - 1,
+				total: Item.price * (Item.quantity - 1),
+			});
+		}
+	};
+	const addToCartHandler = () => {
+		console.log('hello');
+		dispatch(addPrducts(Item));
+		closeModal();
+	};
 	return (
 		<div className={styles.form_container}>
 			<div className={styles.form_details}>
-				<p>{product.description}</p>
+				<div className='flex row spc-btw'>
+					<p>{product.description}</p>
+					<span>
+						<i class='fa-solid fa-indian-rupee-sign'></i>{' '}
+						{/* {product.price} */}
+						{product.price}
+					</span>
+				</div>
 				<span>{product.size[0].title}</span>
 				<div className={styles.pizza_size_radio_group}>
-					{product.size[0].items.map((item) => (
-						<div className={styles.radio_btn}>
+					{product.size[0].items.map((item, i) => (
+						<div className={styles.radio_btn} key={i}>
 							{product.size[0].isRadio ? (
 								<input
 									type='radio'
-									id='html'
+									id='size'
 									name='size'
 									value={item.size}
+									onChange={inputChangeHandler}
 								/>
 							) : (
 								<input type='checkbox' />
 							)}
-							  <label for='html'>{item.size}</label>
+							  <label>{item.size}</label>
 							<br></br>
 						</div>
 					))}
@@ -34,19 +81,25 @@ const AddForm = ({ product }) => {
 
 				<span>{product.toppings[0].title}</span>
 				<div className={styles.pizza_size_radio_group}>
-					{product.toppings[0].items.map((item) => (
-						<div className={styles.radio_btn}>
+					{product.toppings[0].items.map((item, i) => (
+						<div className={styles.radio_btn} key={i}>
 							{product.toppings[0].isRadio ? (
 								<input
 									type='radio'
-									id='html'
-									name='name'
+									id='name'
+									onChange={inputChangeHandler}
+									name='toppings'
 									value={item.name}
 								/>
 							) : (
-								<input type='checkbox' />
+								<input
+									type='checkbox'
+									name='toppings'
+									onChange={inputChangeHandler}
+									value={item.name}
+								/>
 							)}
-							  <label for='html'>{item.name}</label>
+							  <label>{item.name}</label>
 							<br></br>
 						</div>
 					))}
@@ -55,23 +108,27 @@ const AddForm = ({ product }) => {
 			<footer className={styles.form_footer}>
 				<span>
 					<i class='fa-solid fa-indian-rupee-sign'></i>{' '}
-					{product.price}
+					{/* {product.price} */}
+					{Item.total}
 				</span>
 				<div className={`${styles.control} `}>
 					<div
 						className={`${styles.control} control btn-secondary btn-red`}>
 						<i
-							class='fa-solid fa-minus'
-							onClick={() => changeHandler('increase')}></i>
-						<h3>Add</h3>
-						<i
-							class='fa-solid fa-plus'
+							className='fa-solid fa-minus'
 							onClick={() => changeHandler('decrease')}></i>
+						<h3>{Item.quantity}</h3>
+						<i
+							className='fa-solid fa-plus'
+							onClick={() => changeHandler('increase')}></i>
 					</div>
-					<div className={styles.add_cart}>
+					<button
+						disabled={Item.quantity <= 0 ? true : false}
+						className={styles.add_cart}
+						onClick={addToCartHandler}>
 						<h4>Add To Cart</h4>
-						<i class='fa-solid fa-cart-plus'></i>
-					</div>
+						<i className='fa-solid fa-cart-plus'></i>
+					</button>
 				</div>
 			</footer>
 		</div>

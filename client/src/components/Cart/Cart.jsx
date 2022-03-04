@@ -3,25 +3,37 @@ import { useSelector } from 'react-redux';
 import styles from './Cart.module.css';
 
 const Cart = () => {
-	const cart = useSelector((state) => state.cart.cart);
-
+	const { cart, total } = useSelector((state) => state.cart);
 	return (
 		<aside className={`${styles.cart_container} cart-section`}>
 			<h3 className={styles.header}>Cart</h3>
 			<div className={styles.cart}>
 				<span>Your Items</span>
-				<ul className={styles.cart_items_list}>
+				<table className={styles.cart_items_list}>
+					<tr>
+						<th>Pizza Name</th>
+						<th>Quantity</th>
+						<th>price</th>
+					</tr>
 					{cart.map((item) => (
-						<li>
-							<h3>Item1</h3>
-							<span>
+						<tr>
+							<td>{item.pizza.name}</td>
+							<td>{item.quantity}</td>
+							<td>
 								<i class='fa-solid fa-indian-rupee-sign'></i>{' '}
-								333
-							</span>
-						</li>
+								{item.price}
+							</td>
+						</tr>
 					))}
-				</ul>
+				</table>
 			</div>
+			<div className={styles.cart_footer}>
+				<span>Total : </span>
+				<span>
+					<i class='fa-solid fa-indian-rupee-sign'></i> {total}{' '}
+				</span>
+			</div>
+			<button className={styles.cart_order_btn}>Order Now</button>
 		</aside>
 	);
 };

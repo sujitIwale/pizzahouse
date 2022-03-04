@@ -28,7 +28,11 @@ const ProductList = () => {
 				<Modal
 					closeModal={() => setModalOpen(false)}
 					modalTitle={selectedProduct.name}>
-					<AddForm product={selectedProduct} />
+					<AddForm
+						product={selectedProduct}
+						dispatch={dispatch}
+						closeModal={() => setModalOpen(false)}
+					/>
 				</Modal>
 			)}
 			{products.map((product) => (
