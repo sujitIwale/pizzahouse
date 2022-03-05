@@ -1,9 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { removePrduct } from '../../redux/cart/cartActions';
 import styles from './Cart.module.css';
 
 const Cart = () => {
 	const { cart, total } = useSelector((state) => state.cart);
+	const dispatch = useDispatch();
+	const removeItem = (i) => {
+		dispatch(removePrduct(i));
+	};
 	return (
 		<aside className={`${styles.cart_container} cart-section`}>
 			<h3 className={styles.header}>Cart</h3>
@@ -15,13 +20,18 @@ const Cart = () => {
 						<th>Quantity</th>
 						<th>price</th>
 					</tr>
-					{cart.map((item) => (
+					{cart.map((item, i) => (
 						<tr>
 							<td>{item.pizza.name}</td>
 							<td>{item.quantity}</td>
 							<td>
 								<i class='fa-solid fa-indian-rupee-sign'></i>{' '}
 								{item.price}
+							</td>
+							<td
+								className='pointer'
+								onClick={() => removeItem(i)}>
+								<i class='fa-solid fa-trash'></i>
 							</td>
 						</tr>
 					))}

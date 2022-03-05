@@ -1,8 +1,19 @@
 .top_bar {
     /* padding: 3px; */
     /* border-bottom: 0.7px solid rgb(182, 181, 181); */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 0;
+    left: 50px;
+    position: sticky;
 }
 
 .filter_options > *{
     margin: 3px 8px;
+}
+
+.toggle_container span{ 
+    margin: 0 3px;
+    padding: 3px 7px;
 }

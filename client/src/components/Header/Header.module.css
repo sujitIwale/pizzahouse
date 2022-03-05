@@ -1,8 +1,8 @@
 .header_container {
     width: 100%;
-     position: sticky;
-    top:0;
+    /* top:0;
     left:0;
+     position: fixed; */
     background-color: white;
     padding: 2px;
 }

@@ -46,6 +46,16 @@ html,body {
 .selected {
     border-bottom: 3px solid rgb(15, 136, 235);
 }
+.selected-veg {
+    border: 1px solid rgb(0, 87, 0);
+    border-radius: 8px;
+    background-color: rgb(216, 252, 216);
+}
+.selected-non-veg {
+    border: 1px solid rgb(221, 29, 29);
+    border-radius: 8px;
+    background-color: rgb(253, 223, 223);
+}
 .Veg {
     background-color: rgb(0, 87, 0);
 }

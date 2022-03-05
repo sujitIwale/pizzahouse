@@ -10,9 +10,8 @@ import TopBar from '../TopBar/TopBar';
 
 const ProductList = () => {
 	const [ModalOpen, setModalOpen] = useState(false);
-	const { products, selectedProduct } = useSelector(
-		(state) => state.products
-	);
+	const { products, selectedProduct, filtering, filteredProducts } =
+		useSelector((state) => state.products);
 	// const [products, setproducts] = useState([]);
 	const dispatch = useDispatch();
 
@@ -37,14 +36,23 @@ const ProductList = () => {
 					/>
 				</Modal>
 			)}
-			{products.map((product) => (
-				<PizzaCard
-					key={product.id}
-					product={product}
-					dispatch={dispatch}
-					openModal={() => setModalOpen(true)}
-				/>
-			))}
+			{filtering
+				? filteredProducts.map((product) => (
+						<PizzaCard
+							key={product.id}
+							product={product}
+							dispatch={dispatch}
+							openModal={() => setModalOpen(true)}
+						/>
+				  ))
+				: products.map((product) => (
+						<PizzaCard
+							key={product.id}
+							product={product}
+							dispatch={dispatch}
+							openModal={() => setModalOpen(true)}
+						/>
+				  ))}
 		</div>
 	);
 };

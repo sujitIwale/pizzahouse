@@ -1,4 +1,4 @@
-import { ADD_PRODUCTS } from './cartTypes';
+import { ADD_PRODUCTS, REMOVE_PRODUCT } from './cartTypes';
 
 const initialState = {
 	cart: [],
@@ -14,7 +14,19 @@ export const cartReducer = (state = initialState, action) => {
 			state.cart.forEach((item) => {
 				total = item.total + total;
 			});
-			console.log(total);
+			return {
+				...state,
+				cart: newCart,
+				total,
+			};
+		}
+		case REMOVE_PRODUCT: {
+			state.cart.splice(action.payload, 1);
+			const newCart = [...state.cart];
+			let total = 0;
+			state.cart.forEach((item) => {
+				total = item.total + total;
+			});
 			return {
 				...state,
 				cart: newCart,

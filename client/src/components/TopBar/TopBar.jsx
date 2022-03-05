@@ -1,12 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilteredBy } from '../../redux/products/productsActions';
+import {
+	setFilteredBy,
+	setFilteredProducts,
+} from '../../redux/products/productsActions';
 import styles from './TopBar.module.css';
 
 const TopBar = () => {
 	const filteredBy = useSelector((state) => state.products.filteredBy);
 	const dispatch = useDispatch();
-	const addFiter = (filter) => dispatch(setFilteredBy(filter));
+	const addFiter = (filter) => {
+		dispatch(setFilteredBy(filter));
+		dispatch(setFilteredProducts(filter));
+	};
 	return (
 		<div className={`${styles.top_bar} top-bar-container`}>
 			<div className={styles.filter_options}>
@@ -44,6 +50,22 @@ const TopBar = () => {
 						filteredBy === 'rltoh' ? 'selected' : ''
 					} pointer`}>
 					Rating Low to High
+				</span>
+			</div>
+			<div className={styles.toggle_container}>
+				<span
+					onClick={() => addFiter('veg')}
+					className={`${
+						filteredBy === 'veg' ? 'selected-veg' : ''
+					} pointer`}>
+					Veg
+				</span>
+				<span
+					onClick={() => addFiter('non-veg')}
+					className={`${
+						filteredBy === 'non-veg' ? 'selected-non-veg' : ''
+					} pointer`}>
+					Non Veg
 				</span>
 			</div>
 		</div>

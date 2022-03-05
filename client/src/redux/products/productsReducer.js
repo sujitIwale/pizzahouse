@@ -8,11 +8,10 @@ import {
 const initialState = {
 	products: [],
 	selectedProduct: null,
-	filteredProducts: [],
 	filteredBy: 'all',
+	filteredProducts: [],
+	filtering: false,
 };
-
-const compare = (a, b) => {};
 
 export const productsReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -26,17 +25,43 @@ export const productsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				filteredBy: action.payload,
+				filtering: action.payload === 'all' ? false : true,
 			};
 		}
 		case SET_FILTERED_PRODUCTS: {
-			let results;
-			if (state.filteredBy === 'phtol') {
+			let results = [];
+
+			if (action.payload === 'phtol') {
 				results = [...state.products];
-				results.sort();
+				results.sort((a, b) => {
+					return a.price < b.price ? 1 : -1;
+				});
+			} else if (action.payload === 'pltoh') {
+				results = [...state.products];
+				results.sort((a, b) => {
+					return a.price > b.price ? 1 : -1;
+				});
+			} else if (action.payload === 'rhtol') {
+				results = [...state.products];
+				results.sort((a, b) => {
+					return a.rating < b.rating ? 1 : -1;
+				});
+			} else if (action.payload === 'rltoh') {
+				results = [...state.products];
+				results.sort((a, b) => {
+					return a.rating > b.rating ? 1 : -1;
+				});
+			}
+
+			if (action.payload === 'veg') {
+				results = state.products.filter((item) => item.isVeg);
+			}
+			if (action.payload === 'non-veg') {
+				results = state.products.filter((item) => !item.isVeg);
 			}
 			return {
 				...state,
-				filteredProducts: action.payload,
+				filteredProducts: results,
 			};
 		}
 		case SET_SELECTED_PRODUCT: {

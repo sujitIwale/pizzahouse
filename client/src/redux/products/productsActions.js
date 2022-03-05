@@ -17,7 +17,7 @@ export const setFilteredBy = (filter) => ({
 	type: SET_FILTERED_BY,
 	payload: filter,
 });
-export const setFilteredProducts = (products) => ({
+export const setFilteredProducts = (sortBy) => ({
 	type: SET_FILTERED_PRODUCTS,
-	payload: products,
+	payload: sortBy,
 });

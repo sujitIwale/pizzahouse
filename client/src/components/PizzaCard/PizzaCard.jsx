@@ -10,7 +10,9 @@ const PizzaCard = ({ product, openModal, dispatch }) => {
 	const type = product.isVeg ? 'Veg' : 'Non-Veg';
 	console.log(type);
 	return (
-		<div className={`${styles.pizza_card_container}`}>
+		<div
+			className={`${styles.pizza_card_container} pointer`}
+			onClick={addItemHandler}>
 			<img
 				className={`${styles.card_item_img}`}
 				alt='card-img'
