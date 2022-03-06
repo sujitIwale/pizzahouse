@@ -31,3 +31,23 @@
 .footer_content ul li{
     margin: 10px 0;
 }
+
+@media only screen and (max-width: 415px) {
+    .footer_container {
+    bottom: 0;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 20px;
+    border-top: 1px solid rgb(190, 190, 190);
+}
+
+.footer_content {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+}
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Cart from './components/Cart/Cart';
+import Cart from './components/Cart/CartContainer';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import ProductList from './components/ProductList/ProductList';
@@ -13,6 +13,7 @@ const App = () => {
 				<ProductList />
 				<Cart />
 			</main>
+			{/* <CartButton /> */}
 			<Footer />
 		</div>
 	);

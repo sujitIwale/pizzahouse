@@ -1,39 +1,15 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { Fragment } from 'react';
+import { useDispatch } from 'react-redux';
 import { removePrduct } from '../../redux/cart/cartActions';
-import AddForm from '../AddForm/AddForm';
-import Modal from '../Modal/Modal';
 import styles from './Cart.module.css';
 
-const Cart = () => {
-	const [OpenModal, setOpenModal] = useState(false);
-	const [EditItem, setEditItem] = useState(null);
-	const { cart, total } = useSelector((state) => state.cart);
+const Cart = ({ openEditModal, cart, total }) => {
 	const dispatch = useDispatch();
 	const removeItem = (i) => {
 		dispatch(removePrduct(i));
 	};
-	const openEditModal = (product, i) => {
-		setEditItem(product);
-		setOpenModal(true);
-	};
 	return (
-		<aside className={`${styles.cart_container} cart-section`}>
-			{OpenModal && (
-				<Modal
-					closeModal={() => setOpenModal(false)}
-					modalTitle={EditItem.name}>
-					<AddForm
-						product={EditItem.pizza}
-						cartItem={EditItem}
-						itemIndex={EditItem.index}
-						type='edit'
-						dispatch={dispatch}
-						closeModal={() => setOpenModal(false)}
-					/>
-				</Modal>
-			)}
-			<h3 className={styles.header}>Cart</h3>
+		<Fragment>
 			<div className={styles.cart}>
 				<span>Your Items</span>
 				<table className={styles.cart_items_list}>
@@ -56,8 +32,8 @@ const Cart = () => {
 											? item.toppings
 												? item.toppings
 												: ''
-											: item.toppings.map((t) => (
-													<span> {t} </span>
+											: item.toppings.map((t, k) => (
+													<span key={k}> {t} </span>
 											  ))}
 									</div>
 								</div>
@@ -88,7 +64,7 @@ const Cart = () => {
 				</span>
 			</div>
 			<button className={styles.cart_order_btn}>Order Now</button>
-		</aside>
+		</Fragment>
 	);
 };
 

@@ -79,3 +79,10 @@
 .add_cart > * {
     margin: 0 2px;
 }
+
+@media only screen and (max-width:450px) {
+    .form_container {
+    padding: 3px;
+    font-size: small;
+}
+}
