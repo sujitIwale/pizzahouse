@@ -2,6 +2,7 @@ import React from 'react';
 import { setSelectedProduct } from '../../redux/products/productsActions';
 import styles from './PizzaCard.module.css';
 
+
 const PizzaCard = ({ product, openModal, dispatch }) => {
 	const addItemHandler = () => {
 		dispatch(setSelectedProduct(product));
@@ -44,7 +45,7 @@ const PizzaCard = ({ product, openModal, dispatch }) => {
 			</div>
 			<div className={styles.card_footer}>
 				<span>
-					<i class='fa-solid fa-indian-rupee-sign'></i>{' '}
+					<i className='fa-solid fa-indian-rupee-sign'></i>{' '}
 					{product.price}
 				</span>
 				<div

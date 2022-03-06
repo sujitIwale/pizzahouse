@@ -39,7 +39,9 @@
     padding: 3px;
     border-bottom: 0.7px solid rgb(209, 208, 208);
 }
-
+td.pizza_name_column {
+    text-align: start;
+}
 .cart_footer {
     background-color: rgb(243, 242, 242);
     box-shadow: 0 2px 7px #c2c2c2;
@@ -61,3 +63,4 @@
     font-weight: bolder;
     cursor: pointer;
 }
+

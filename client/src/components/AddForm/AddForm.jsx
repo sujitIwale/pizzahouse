@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { addPrducts } from '../../redux/cart/cartActions';
+import { addPrducts, editProduct } from '../../redux/cart/cartActions';
 import styles from './AddForm.module.css';
 
-const AddForm = ({ product, dispatch, closeModal }) => {
+const AddForm = ({
+	product,
+	dispatch,
+	closeModal,
+	itemIndex,
+	cartItem,
+	type,
+}) => {
 	const [Item, setItem] = useState({
 		pizza: product,
-		quantity: 1,
+		quantity: cartItem ? cartItem.quantity : 1,
 		price: product.price,
-		toppings: [],
-		size: 'Regular',
-		total: product.price,
+		toppings: cartItem ? cartItem.toppings : [],
+		size: cartItem ? cartItem.size : 'Regular',
+		total: cartItem ? cartItem.total : product.price,
 	});
 	const inputChangeHandler = (e) => {
 		if (e.target.name === 'toppings' && e.target.type === 'checkbox') {
@@ -44,7 +51,11 @@ const AddForm = ({ product, dispatch, closeModal }) => {
 	};
 	const addToCartHandler = () => {
 		console.log('hello');
-		dispatch(addPrducts(Item));
+		if (type === 'edit') {
+			dispatch(editProduct({ product: Item, productIndex: itemIndex }));
+		} else {
+			dispatch(addPrducts(Item));
+		}
 		closeModal();
 	};
 	return (
@@ -53,7 +64,7 @@ const AddForm = ({ product, dispatch, closeModal }) => {
 				<div className='flex row spc-btw'>
 					<p>{product.description}</p>
 					<span>
-						<i class='fa-solid fa-indian-rupee-sign'></i>{' '}
+						<i className='fa-solid fa-indian-rupee-sign'></i>{' '}
 						{/* {product.price} */}
 						{product.price}
 					</span>
@@ -68,6 +79,9 @@ const AddForm = ({ product, dispatch, closeModal }) => {
 									id='size'
 									name='size'
 									value={item.size}
+									checked={
+										item.size === Item.size ? true : false
+									}
 									onChange={inputChangeHandler}
 								/>
 							) : (
@@ -90,11 +104,29 @@ const AddForm = ({ product, dispatch, closeModal }) => {
 									onChange={inputChangeHandler}
 									name='toppings'
 									value={item.name}
+									checked={
+										Array.isArray(Item.toppings) &&
+										Item.toppings.find(
+											(el) => el === item.name
+										)
+											? true
+											: Item.toppings === item.name
+											? true
+											: false
+									}
 								/>
 							) : (
 								<input
 									type='checkbox'
 									name='toppings'
+									checked={
+										Array.isArray(Item.toppings) &&
+										Item.toppings.find(
+											(el) => el === item.name
+										)
+											? true
+											: false
+									}
 									onChange={inputChangeHandler}
 									value={item.name}
 								/>
@@ -107,7 +139,7 @@ const AddForm = ({ product, dispatch, closeModal }) => {
 			</div>
 			<footer className={styles.form_footer}>
 				<span>
-					<i class='fa-solid fa-indian-rupee-sign'></i>{' '}
+					<i className='fa-solid fa-indian-rupee-sign'></i>{' '}
 					{/* {product.price} */}
 					{Item.total}
 				</span>

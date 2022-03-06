@@ -3,10 +3,12 @@ import {
 	SET_SELECTED_PRODUCT,
 	SET_FILTERED_PRODUCTS,
 	SET_FILTERED_BY,
+	SET_LOADING,
 } from './productsTypes';
 
 const initialState = {
 	products: [],
+	loading: false,
 	selectedProduct: null,
 	filteredBy: 'all',
 	filteredProducts: [],
@@ -15,10 +17,17 @@ const initialState = {
 
 export const productsReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case SET_LOADING: {
+			return {
+				...state,
+				loading: action.payload,
+			};
+		}
 		case SET_PRODUCTS: {
 			return {
 				...state,
 				products: action.payload,
+				loading: false,
 			};
 		}
 		case SET_FILTERED_BY: {

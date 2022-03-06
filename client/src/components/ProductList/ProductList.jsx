@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPrducts } from '../../redux/products/productsActions';
-import { apiUrl } from '../../utils/apiEndpoints';
-import PizzaCard from '../PizzaCard/PizzaCard';
+import {
+	fetchProducts,
+	setLoading,
+} from '../../redux/products/productsActions';
 import Modal from '../Modal/Modal';
 import styles from './ProductList.module.css';
 import AddForm from '../AddForm/AddForm';
 import TopBar from '../TopBar/TopBar';
+import PizzaCardSkeleton from '../Skeleton/PizzaCardSkeleton';
+// import CardSkeleton from '../Skeleton/CardSkeleton';
+import PizzaCard from '../PizzaCard/PizzaCard';
+// const PizzaCard = React.lazy(() => import('../PizzaCard/PizzaCard'));
 
 const ProductList = () => {
 	const [ModalOpen, setModalOpen] = useState(false);
-	const { products, selectedProduct, filtering, filteredProducts } =
+	const { products, selectedProduct, filtering, filteredProducts, loading } =
 		useSelector((state) => state.products);
 	// const [products, setproducts] = useState([]);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		fetch(apiUrl)
-			.then((res) => res.json())
-			.then((data) => {
-				dispatch(setPrducts(data));
-			});
-	}, []);
+		dispatch(setLoading(true));
+		dispatch(fetchProducts());
+	}, [dispatch]);
 	return (
 		<div className={`${styles.product_list_container} product-section`}>
 			<TopBar />
@@ -36,7 +38,8 @@ const ProductList = () => {
 					/>
 				</Modal>
 			)}
-			{filtering
+			{loading && <PizzaCardSkeleton />}
+			{!loading && filtering
 				? filteredProducts.map((product) => (
 						<PizzaCard
 							key={product.id}
