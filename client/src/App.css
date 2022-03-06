@@ -93,14 +93,22 @@ html,body {
 .row {
     flex-direction: row;
 }
+.column {
+    flex-direction: column;
+}
 .spc-btw {
     justify-content: space-between;
+}
+
+.ma-b-4 {
+    margin: 4px;
 }
 
 .cart-btn-container {
     right: 30px;
     bottom: 30px;
     position: fixed;
+    z-index: 100;
 }
 
 .cart-btn {

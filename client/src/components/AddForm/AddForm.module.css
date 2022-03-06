@@ -18,6 +18,13 @@
 
 .pizza_size_radio_group > * {
     margin: 3px;
+    cursor: pointer;
+}
+
+.pizza_size_radio_group input {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
 }
 
 .radio_btn {
@@ -82,7 +89,15 @@
 
 @media only screen and (max-width:450px) {
     .form_container {
-    padding: 3px;
+    padding: 8px;
     font-size: small;
+}
+.pizza_size_radio_group {
+    flex-flow: row wrap;
+}
+.pizza_size_radio_group input {
+    width: auto;
+    height: auto;
+    cursor: pointer;
 }
 }
